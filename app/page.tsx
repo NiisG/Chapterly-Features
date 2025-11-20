@@ -11,7 +11,8 @@ import {
   Play, BookOpen, Library, Quote, Search,
   Shield, Star, ChevronDown,
   ChevronLeft, ChevronRight, Apple,
-  LayoutGrid, FileText, Zap, X, Check
+  LayoutGrid, FileText, Zap, X, Check,
+  Mic, Timer, Target
 } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -448,11 +449,11 @@ export default function ChapterlyLanding() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto px-2">
               {[
+                { icon: Quote, title: "Save Quotes", text: "Capture wisdom instantly. Scan pages or type them out." },
+                { icon: Mic, title: "Voice to Text", text: "Dictate your thoughts and notes directly into the app." },
+                { icon: Timer, title: "Pomodoro Timer", text: "Stay focused with built-in reading sessions." },
+                { icon: Target, title: "Reading Goals", text: "Set annual or monthly goals to keep yourself on track." },
                 { icon: Library, title: "Infinite Shelves", text: "Create unlimited lists. Sort by genre, mood, or priority." },
-                { icon: Search, title: "Deep Search", text: "Find that one specific quote you saved in seconds." },
-                { icon: Star, title: "Daily Streaks", text: "Gamify your reading habit. Don't break the chain." },
-                { icon: Shield, title: "Privacy First", text: "We don't sell your data. Your reading is private." },
-                { icon: Quote, title: "Social Sharing", text: "Generate beautiful quote cards for Instagram." },
                 { icon: Zap, title: "Offline Sync", text: "No internet? No problem. Works everywhere." },
               ].map((item, i) => (
                 <div

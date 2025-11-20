@@ -34,7 +34,7 @@ const IMAGES = {
 
 // --- COMPONENTS ---
 
-const Button = ({ children, className, variant = 'primary', ...props }: any) => {
+const Button = ({ children, className, variant = 'primary', href, ...props }: any) => {
   const baseStyle = "inline-flex items-center justify-center rounded-full font-medium transition-all active:scale-95 duration-200";
   const variants = {
     primary: "bg-slate-900 text-white hover:bg-slate-800 h-14 px-8 py-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5",
@@ -42,6 +42,15 @@ const Button = ({ children, className, variant = 'primary', ...props }: any) => 
     ghost: "hover:bg-slate-100 h-10 px-4 py-2 text-slate-900",
     secondary: "bg-white text-slate-900 border border-slate-200 shadow-sm hover:bg-slate-50 h-14 px-8"
   };
+
+  if (href) {
+    return (
+      <a href={href} className={cn(baseStyle, variants[variant as keyof typeof variants], className)} {...props}>
+        {children}
+      </a>
+    );
+  }
+
   return (
     <button className={cn(baseStyle, variants[variant as keyof typeof variants], className)} {...props}>
       {children}
@@ -296,19 +305,10 @@ const WaitlistModal = ({ onClose }: { onClose: () => void }) => (
 
 export default function ChapterlyLanding() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [isWaitlisted, setIsWaitlisted] = useState(false);
+
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
 
-  useEffect(() => {
-    const waitlisted = localStorage.getItem('chapterly_waitlist');
-    if (waitlisted) setIsWaitlisted(true);
-  }, []);
 
-  const handleJoinWaitlist = () => {
-    localStorage.setItem('chapterly_waitlist', 'true');
-    setIsWaitlisted(true);
-    setShowWaitlistModal(true);
-  };
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-sky-200 overflow-x-hidden">
@@ -338,9 +338,9 @@ export default function ChapterlyLanding() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mx-auto mb-6 md:mb-8 flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-2xl md:rounded-3xl bg-white/80 backdrop-blur shadow-xl rotate-3"
+                className="mx-auto mb-6 md:mb-8 flex items-center justify-center"
               >
-                <BookOpen className="h-8 w-8 md:h-10 md:w-10 text-slate-900" />
+                <img src="/image.png" alt="Chapterly Logo" className="w-16 h-16 md:w-20 md:h-20 object-contain" />
               </motion.div>
 
               <motion.h1
@@ -368,17 +368,15 @@ export default function ChapterlyLanding() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex flex-col w-full max-w-xs md:max-w-none md:flex-row items-center justify-center gap-4 md:gap-6 mb-8"
               >
-                <Button className="w-full md:w-auto h-14 px-8 bg-black text-white gap-3 text-lg hover:bg-gray-900 shadow-2xl">
-                  <Apple className="w-6 h-6 fill-current" /> Download on iOS
+                <Button
+                  href="https://apps.apple.com/ca/app/chapterly/id6755092891"
+                  target="_blank"
+                  className="w-full md:w-auto h-14 px-8 bg-sky-500 text-white gap-3 text-lg hover:bg-white-600 shadow-2xl"
+                >
+                  <img src="/apple.png" alt="Apple Logo" className="w-6 h-6 object-contain" /> Download on iOS
                 </Button>
 
-                <Button
-                  variant="secondary"
-                  className="w-full md:w-auto h-14 px-8 gap-3 text-lg text-slate-900 hover:bg-slate-50"
-                  onClick={handleJoinWaitlist}
-                >
-                  Join Web Waitlist
-                </Button>
+
               </motion.div>
             </div>
 
@@ -428,7 +426,7 @@ export default function ChapterlyLanding() {
           <ScrollReveal className="container mx-auto px-4">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 text-slate-900">
-                built for readers
+                Built for readers
               </h2>
               <p className="max-w-xl mx-auto text-slate-600 text-base md:text-lg">
                 Tap to see how Chapterly adapts to your reading style.
@@ -445,7 +443,7 @@ export default function ChapterlyLanding() {
           <ScrollReveal className="container mx-auto px-4">
             <div className="text-center mb-12 md:mb-20">
               <span className="text-green-600 font-bold tracking-widest text-xs uppercase mb-3 block">Benefits</span>
-              <h2 className="text-3xl md:text-6xl font-bold text-slate-900">why chapterly?</h2>
+              <h2 className="text-3xl md:text-6xl font-bold text-slate-900">Why Chapterly?</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto px-2">
@@ -477,7 +475,7 @@ export default function ChapterlyLanding() {
           <ScrollReveal className="container mx-auto px-0 md:px-4">
             <div className="text-center mb-10 md:mb-16 px-4">
               <span className="text-orange-500 font-bold tracking-widest text-xs uppercase mb-3 block">POTENTIAL</span>
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">unlock your reading potential</h2>
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight">Unlock your reading potential</h2>
             </div>
 
             <PotentialCarousel />
@@ -534,19 +532,20 @@ export default function ChapterlyLanding() {
               </p>
 
               <div className="flex flex-col items-center gap-4 px-4">
-                <Button className="w-full md:w-auto h-16 px-10 bg-white text-black hover:bg-gray-200 gap-3 text-lg rounded-2xl">
-                  <Apple className="w-6 h-6 fill-current" /> Download on App Store
+                <Button
+                  href="https://apps.apple.com/ca/app/chapterly/id6755092891"
+                  target="_blank"
+                  className="w-full md:w-auto h-16 px-10 bg-white text-black hover:bg-gray-200 gap-3 text-lg rounded-2xl"
+                >
+                  <img src="/apple-logo.png" alt="Apple Logo" className="w-6 h-6 object-contain" /> Download on App Store
                 </Button>
-                <div className="flex items-center gap-2 mt-2">
-                  <Play className="w-4 h-4 text-gray-600" />
-                  <span className="text-xs md:text-sm text-gray-600">Google Play (Coming Soon)</span>
-                </div>
+
               </div>
             </div>
 
             <div className="mt-16 md:mt-24 pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm gap-6 md:gap-0">
               <div className="flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-white" />
+                <img src="/image.png" alt="Chapterly Logo" className="w-6 h-6 object-contain" />
                 <span className="text-white font-bold text-base">Chapterly</span>
               </div>
               <div className="flex gap-6 md:gap-8">

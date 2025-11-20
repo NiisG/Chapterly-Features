@@ -13,7 +13,9 @@ import {
   Play, BookOpen, Library, Quote, Search,
   Shield, Smartphone, Zap, ChevronDown,
   ChevronLeft, ChevronRight, Star,
-  Apple, LayoutGrid, FileText, X
+  Apple, LayoutGrid, FileText, X,
+  Brain, WifiOff, Lock, Gem, Mic, Globe, Share2,
+  Flame, Award, CheckCircle
 } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -248,41 +250,41 @@ const PotentialCarousel = () => {
   );
 };
 
-// 5. LOGO MARQUEE
-const LogoMarquee = () => {
+// 5. FEATURED ON
+const FeaturedOn = () => {
+  const badges = [
+    { name: "Startup Fame", type: "dark", icon: <Flame className="w-4 h-4 text-red-500 mr-2" /> },
+    { name: "AI Agents Directory", type: "light", icon: <CheckCircle className="w-4 h-4 text-green-500 mr-2" /> },
+    { name: "twelve.tools", type: "light", icon: <Award className="w-4 h-4 text-yellow-500 mr-2" /> },
+    { name: "SimilarLabs", type: "light", icon: <LayoutGrid className="w-4 h-4 text-slate-900 mr-2" /> },
+    { name: "LaunchIgniter", type: "light", icon: <Zap className="w-4 h-4 text-blue-500 mr-2" /> },
+    { name: "Dofollow.Tools", type: "dark", icon: <Search className="w-4 h-4 text-blue-400 mr-2" /> },
+    { name: "The One Startup", type: "light", icon: <Star className="w-4 h-4 text-red-500 mr-2" /> },
+    { name: "Wired Business", type: "light", icon: <Award className="w-4 h-4 text-orange-500 mr-2" /> },
+    { name: "Tool Pilot", type: "text", icon: null }, // Just text for variety
+  ];
+
   return (
-    <div className="w-full overflow-hidden py-16 bg-white">
-      <div className="text-center mb-10 text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Trusted by readers from</div>
-      <div className="relative flex overflow-hidden group select-none">
-        <motion.div
-          className="flex gap-20 min-w-full justify-around items-center opacity-40 grayscale"
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        >
-          {/* Text Placeholders - Replace with SVGs */}
-          <h3 className="text-3xl font-serif font-bold">Goodreads</h3>
-          <h3 className="text-3xl font-sans font-black tracking-tighter">TheVerge</h3>
-          <h3 className="text-3xl font-serif italic">Medium</h3>
-          <h3 className="text-3xl font-mono font-bold">ProductHunt</h3>
-          <h3 className="text-3xl font-sans font-bold">TechCrunch</h3>
-          <h3 className="text-3xl font-serif font-bold">Goodreads</h3>
-          <h3 className="text-3xl font-sans font-black tracking-tighter">TheVerge</h3>
-          <h3 className="text-3xl font-serif italic">Medium</h3>
-        </motion.div>
-        <motion.div
-          className="flex gap-20 min-w-full justify-around items-center opacity-40 grayscale absolute top-0 left-full pl-20"
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        >
-          <h3 className="text-3xl font-serif font-bold">Goodreads</h3>
-          <h3 className="text-3xl font-sans font-black tracking-tighter">TheVerge</h3>
-          <h3 className="text-3xl font-serif italic">Medium</h3>
-          <h3 className="text-3xl font-mono font-bold">ProductHunt</h3>
-          <h3 className="text-3xl font-sans font-bold">TechCrunch</h3>
-          <h3 className="text-3xl font-serif font-bold">Goodreads</h3>
-          <h3 className="text-3xl font-sans font-black tracking-tighter">TheVerge</h3>
-          <h3 className="text-3xl font-serif italic">Medium</h3>
-        </motion.div>
+    <div className="py-20 bg-white">
+      <div className="container mx-auto px-4 text-center">
+        <h3 className="text-xl italic text-slate-400 font-serif mb-10">Featured On</h3>
+        <div className="flex flex-wrap justify-center gap-6 items-center">
+          {badges.map((badge, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -2 }}
+              className={cn(
+                "flex items-center px-5 py-3 rounded-xl font-bold text-sm transition-all cursor-default",
+                badge.type === "dark" && "bg-slate-900 text-white shadow-lg",
+                badge.type === "light" && "bg-white border border-slate-200 text-slate-700 shadow-sm hover:shadow-md",
+                badge.type === "text" && "text-2xl font-black text-slate-800 tracking-tighter"
+              )}
+            >
+              {badge.icon}
+              {badge.name}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -292,6 +294,18 @@ const LogoMarquee = () => {
 
 export default function ChapterlyLanding() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const faqItems = [
+    { icon: Brain, q: "What is Chapterly?", a: "Chapterly is an AI-powered reading companion that helps you track, understand, and retain more from your books." },
+    { icon: BookOpen, q: "How does Chapterly help in daily reading?", a: "It organizes your library, tracks reading streaks, and lets you save highlights and notes instantly for better retention." },
+    { icon: WifiOff, q: "Can I use Chapterly completely offline?", a: "Yes! Chapterly is built to be offline-first. Your library and notes are always accessible without an internet connection." },
+    { icon: Lock, q: "Is my data private and secure?", a: "Absolutely. We do not sell your data. Your reading habits and personal notes are stored locally and synced securely." },
+    { icon: Gem, q: "Is Chapterly free to use?", a: "The core features are free forever. We offer a premium tier for advanced AI insights and unlimited cloud sync." },
+    { icon: Smartphone, q: "Which platforms is Chapterly available on?", a: "Currently available on iOS. Android version is coming soon!" },
+    { icon: Mic, q: "Can Chapterly transcribe voice notes?", a: "Yes, you can dictate notes directly into the app and our AI will transcribe and organize them for you." },
+    { icon: Globe, q: "What languages does Chapterly support?", a: "The interface is in English, but you can track books and take notes in any language." },
+    { icon: Share2, q: "Can I export my notes?", a: "Yes, you can export your highlights and notes to PDF, Markdown, or directly to Notion." },
+  ];
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-sky-200 overflow-x-hidden">
@@ -437,36 +451,41 @@ export default function ChapterlyLanding() {
           </ScrollReveal>
         </section>
 
+        {/* --- FEATURED ON --- */}
+        <ScrollReveal>
+          <FeaturedOn />
+        </ScrollReveal>
+
         {/* --- FAQ --- */}
-        <section className="py-24 bg-white border-t border-slate-50">
+        <section className="py-24 bg-white">
           <ScrollReveal className="container mx-auto px-4 max-w-3xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold">Common Questions</h2>
+              <span className="text-green-600 font-bold tracking-widest text-xs uppercase mb-4 block">FAQ</span>
+              <h2 className="text-4xl md:text-6xl font-bold text-slate-900">common questions</h2>
             </div>
 
             <div className="space-y-4">
-              {[
-                { q: "Is Chapterly free?", a: "Yes! The core library and tracking features are completely free forever." },
-                { q: "How does the offline mode work?", a: "We store your data locally on your device. It syncs only when you want it to." },
-                { q: "Can I import from Goodreads?", a: "We are building a CSV importer right now. Join the waitlist to be notified!" },
-              ].map((item, idx) => (
-                <div key={idx} className="border border-slate-100 rounded-2xl overflow-hidden">
+              {faqItems.map((item, idx) => (
+                <div key={idx} className="border-b border-slate-100">
                   <button
-                    className="flex items-center justify-between w-full p-6 text-left font-medium text-lg bg-white hover:bg-slate-50 transition-colors"
+                    className="flex items-center justify-between w-full py-6 text-left font-medium text-lg bg-white hover:bg-slate-50 transition-colors group"
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   >
-                    <span>{item.q}</span>
+                    <div className="flex items-center gap-4">
+                      <item.icon className="w-6 h-6 text-slate-400 group-hover:text-slate-900 transition-colors" />
+                      <span className="text-slate-700 group-hover:text-slate-900">{item.q}</span>
+                    </div>
                     <ChevronDown className={cn("transition-transform duration-300 text-slate-400", openFaq === idx ? "rotate-180" : "")} />
                   </button>
                   <AnimatePresence>
                     {openFaq === idx && (
                       <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: "auto" }}
-                        exit={{ height: 0 }}
-                        className="overflow-hidden bg-slate-50/50"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
                       >
-                        <p className="p-6 pt-0 text-slate-500 leading-relaxed">{item.a}</p>
+                        <p className="pb-6 pl-10 text-slate-500 leading-relaxed">{item.a}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -477,42 +496,44 @@ export default function ChapterlyLanding() {
         </section>
 
         {/* --- CTA & FOOTER --- */}
-        <section className="bg-[#111] text-white py-24 rounded-t-[3rem] mt-12">
-          <div className="container mx-auto px-4 text-center">
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-4 text-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="max-w-2xl mx-auto"
             >
-              <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">Ready to read?</h2>
-              <p className="text-gray-400 text-xl mb-12">Join thousands of readers organizing their intellectual life with Chapterly.</p>
-
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <Button className="h-16 px-10 bg-white text-black hover:bg-gray-200 gap-3 text-lg rounded-2xl">
-                  <Apple className="w-6 h-6 fill-current" /> Download on App Store
+              <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight text-slate-900">Get Chapterly Now!</h2>
+              <div className="flex justify-center">
+                <Button className="h-16 px-10 bg-slate-900 text-white hover:bg-slate-800 gap-3 text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all hover:-translate-y-1">
+                  <Play className="w-5 h-5 fill-current" /> Download Now
                 </Button>
-                <div className="flex flex-col items-center">
-                  <Button className="h-16 px-10 bg-transparent border border-gray-700 text-gray-400 cursor-not-allowed gap-3 text-lg rounded-2xl hover:bg-transparent">
-                    <Play className="w-5 h-5 fill-current" /> Google Play
-                  </Button>
-                  <span className="text-[10px] uppercase tracking-widest text-gray-500 mt-2">Coming Soon</span>
-                </div>
               </div>
             </motion.div>
+          </div>
 
-            <div className="mt-24 pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-              <div className="flex items-center gap-2 mb-4 md:mb-0">
-                <BookOpen className="w-6 h-6 text-white" />
-                <span className="text-white font-bold text-lg">Chapterly</span>
+          <div className="container mx-auto px-4 pt-12 border-t border-slate-100">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-6 h-6 text-slate-900" />
+                  <span className="text-slate-900 font-bold text-xl">Chapterly</span>
+                </div>
+                <p className="text-slate-500 text-sm">The Ultimate Private & AI Notes App</p>
               </div>
-              <div className="flex gap-8">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors">Twitter</a>
+
+              <div className="flex flex-col md:items-end gap-4">
+                <h4 className="font-bold text-lg text-slate-900">About</h4>
+                <div className="flex flex-col md:items-end gap-2 text-slate-500">
+                  <a href="#" className="hover:text-slate-900 transition-colors">Contact</a>
+                  <a href="#" className="hover:text-slate-900 transition-colors">Privacy</a>
+                  <a href="#" className="hover:text-slate-900 transition-colors">Terms and Conditions</a>
+                </div>
               </div>
-              <div className="mt-4 md:mt-0">
-                © 2025 Chapterly Inc.
-              </div>
+            </div>
+
+            <div className="mt-16 text-slate-400 text-sm">
+              © 2025 Chapterly Inc. All rights reserved.
             </div>
           </div>
         </section>

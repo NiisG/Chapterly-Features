@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chapterly Features 📚
 
-## Getting Started
+> Feature tracking and development roadmap for [Chapterly](https://apps.apple.com/ca/app/chapterly/id6755092891)
 
-First, run the development server:
+**Chapterly** is a beautiful iOS reading companion app that helps book lovers organize their library, save meaningful quotes, and track their reading journey.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📱 About Chapterly
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Your books & quotes, organized**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Chapterly provides a simple and elegant reading experience for book lovers. Discover and enjoy your favorite books anytime, anywhere. Read, organize, and personalize your digital library with ease.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+- **Category:** Books, Productivity
+- **Status:** Live on App Store
+- **App Store:** [Download Chapterly](https://apps.apple.com/ca/app/chapterly/id6755092891)
 
-To learn more about Next.js, take a look at the following resources:
+## 🖼️ Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<div align="center">
+  <img src="assets/Home.png" width="300" alt="Home Screen" />
+  <img src="assets/Book.png" width="300" alt="Book Detail" />
+</div>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ✨ Current Features
 
-## Deploy on Vercel
+- 📖 **Personal Library Management** - Add and organize your book collection
+- 💬 **Quote Saving** - Capture and save memorable quotes from your books
+- 📊 **Reading Statistics** - Track currently reading books and monthly progress
+- 🎨 **Beautiful UI** - Clean, modern interface with intuitive navigation
+- 🔖 **Reading Status** - Mark books with different reading statuses
+- 📄 **Book Details** - View comprehensive information about each book
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Features In Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Track all features, bugs, and improvements in [GitHub Issues](../../issues).
+
+### Quick Links
+- 📋 [View All Open Issues](../../issues)
+- ✨ [Feature Requests](../../issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+- 🐛 [Bug Reports](../../issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+- 🚀 [In Progress](../../issues?q=is%3Aissue+is%3Aopen+label%3Ain-progress)
+
+### Current Focus
+See the [Project Board](../../projects) for a visual overview of what's being worked on.
+
+## 📝 Completed Features
+
+- ✅ Initial App Store release
+- ✅ Core library management
+- ✅ Quote saving functionality
+- ✅ Reading statistics dashboard
+- ✅ Beautiful, intuitive UI
+- ✅ Book status tracking
+---
+
+<div align="center">
+  <sub>Built with ❤️ for book lovers everywhere</sub>
+</div>
+

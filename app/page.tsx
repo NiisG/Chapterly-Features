@@ -550,9 +550,9 @@ export default function ChapterlyLanding() {
                 <span className="text-white font-bold text-base">Chapterly</span>
               </div>
               <div className="flex gap-6 md:gap-8">
-                <a href="#" className="hover:text-white transition-colors">Privacy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms</a>
-                <a href="#" className="hover:text-white transition-colors">Twitter</a>
+                <a href="https://www.chapterly.xyz/privacy" target="_blank" className="hover:text-white transition-colors">Privacy</a>
+                <a href="https://www.chapterly.xyz/terms" target="_blank" className="hover:text-white transition-colors">Terms</a>
+                <a href="https://x.com/Chapterly_" target="_blank" className="hover:text-white transition-colors">Twitter</a>
               </div>
               <div>
                 © 2025 Chapterly Inc.
